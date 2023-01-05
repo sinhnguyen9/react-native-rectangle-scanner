@@ -251,7 +251,7 @@ public class CameraDeviceController extends JavaCameraView implements PictureCal
             Log.d(TAG, "supported resolution: " + r.width + "x" + r.height + " ratio: " + pictureRatio + " ratioToFitTo: " + ratioToFitTo);
             int resolutionPixels = r.width * r.height;
             double ratioDifference = Math.abs(ratioToFitTo - pictureRatio);
-            if (resolutionPixels > ratioMaxPixels && ratioDifference < bestRatioDifference) {
+            if (resolutionPixels > ratioMaxPixels && ratioDifference <= bestRatioDifference) {
                 ratioMaxPixels = resolutionPixels;
                 ratioCurrentMaxRes = r;
                 bestRatioDifference = ratioDifference;
