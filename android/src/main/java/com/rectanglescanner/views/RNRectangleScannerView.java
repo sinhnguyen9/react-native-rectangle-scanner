@@ -174,7 +174,7 @@ public class RNRectangleScannerView extends RectangleDetectionController {
             throw new Exception("Failed to create the cache directory");
           }
       }
-      return folderDir + "/" + this.cacheFolderName + "/" + name + UUID.randomUUID() + ".png";
+      return folderDir + "/" + this.cacheFolderName + "/" + name + UUID.randomUUID() + ".jpg";
     }
 
     /**
