@@ -1,6 +1,6 @@
 import { PropTypes } from 'prop-types';
 import React, { Component } from 'react';
-import { Dimensions, View } from 'react-native';
+import { View } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
 
 function getDifferenceBetweenRectangles(firstRectangle, secondRectangle) {
@@ -35,8 +35,8 @@ export default class RectangleOverlay extends Component {
       dimensions: PropTypes.shape({ height: PropTypes.number, width: PropTypes.number }),
     }), PropTypes.bool]),
 
-    // The preview ratio from the scanner native component (or just 100%x100%)
-    previewRatio: PropTypes.shape({
+    // The preview size
+    previewSize: PropTypes.shape({
       height: PropTypes.number,
       width: PropTypes.number,
     }),
@@ -69,9 +69,9 @@ export default class RectangleOverlay extends Component {
     detectedBackgroundColor: null,
     detectedBorderColor: null,
     detectedBorderWidth: null,
-    previewRatio: {
-      height: 1,
-      width: 1,
+    previewSize: {
+      height: 0,
+      width: 0,
     },
     onDetectedCapture: null,
     allowDetection: false,
@@ -123,7 +123,7 @@ export default class RectangleOverlay extends Component {
 
   render() {
     const {
-      previewRatio,
+      previewSize,
       detectedRectangle,
       backgroundColor,
       borderColor,
@@ -140,7 +140,6 @@ export default class RectangleOverlay extends Component {
       bottomLeft,
       dimensions,
     } = detectedRectangle;
-    const deviceWindow = Dimensions.get('window');
     const commands = [];
     const plotCoordNode = (cmds, point, svgCMD) => { cmds.push(`${svgCMD}${point.x},${point.y} `); };
     plotCoordNode(commands, topLeft, 'M');
@@ -163,7 +162,7 @@ export default class RectangleOverlay extends Component {
 
     return (
       <View style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, backgroundColor: 'rgba(0,0,0,0)' }}>
-        <Svg height={deviceWindow.height * previewRatio.height} width={deviceWindow.width * previewRatio.width} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <Svg height={previewSize.height} width={previewSize.width} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
           <Path
             d={d}
             style={{ fill, stroke, strokeWidth, strokeLinejoin: 'round', strokeLinecap: 'round' }}
