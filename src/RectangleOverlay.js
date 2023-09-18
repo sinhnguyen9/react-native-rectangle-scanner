@@ -1,6 +1,6 @@
 import { PropTypes } from 'prop-types';
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
 
 function getDifferenceBetweenRectangles(firstRectangle, secondRectangle) {
@@ -59,9 +59,9 @@ export default class RectangleOverlay extends Component {
   };
 
   static defaultProps = {
-    rectangleDifferenceAllowance: 50,
-    detectionCountBeforeCapture: 8,
-    detectionCountBeforeUIChange: 3,
+    rectangleDifferenceAllowance: Platform.OS == 'ios' ? 50 : 10,
+    detectionCountBeforeCapture: Platform.OS == 'ios' ? 8: 3,
+    detectionCountBeforeUIChange: Platform.OS == 'ios' ? 3: 1,
     detectedRectangle: false,
     backgroundColor: 'rgba(255,203,6, 0.3)',
     borderColor: 'rgb(255,203,6)',
