@@ -174,7 +174,7 @@ public class RNRectangleScannerView extends RectangleDetectionController {
             throw new Exception("Failed to create the cache directory");
           }
       }
-      return folderDir + "/" + this.cacheFolderName + "/" + name + UUID.randomUUID() + ".png";
+      return folderDir + "/" + this.cacheFolderName + "/" + name + UUID.randomUUID() + ".jpg";
     }
 
     /**
@@ -185,7 +185,7 @@ public class RNRectangleScannerView extends RectangleDetectionController {
         doc.copyTo(endDoc);
         Core.flip(doc.t(), endDoc, 1);
         ArrayList<Integer> parameters = new ArrayList();
-        parameters.add(Imgcodecs.CV_IMWRITE_JPEG_QUALITY);
+        parameters.add(Imgcodecs.IMWRITE_JPEG_QUALITY);
         parameters.add((int)(this.capturedQuality * 100));
         MatOfInt par = new MatOfInt();
         par.fromList(parameters);

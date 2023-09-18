@@ -194,6 +194,14 @@ public class CameraDeviceController extends JavaCameraView implements PictureCal
     }
 
     /**
+    Sets the size of the camera preview
+    */
+    public void setDeviceConfigurationPreviewSize(int height, int width) {
+      this.deviceConfiguration.putInt("previewHeight", height);
+      this.deviceConfiguration.putInt("previewWidth", width);
+    }
+
+    /**
      Sets the inital device configuration
      */
     public void resetDeviceConfiguration()
@@ -203,6 +211,7 @@ public class CameraDeviceController extends JavaCameraView implements PictureCal
       setDeviceConfigurationPermissionToUseCamera(false);
       setDeviceConfigurationHasCamera(false);
       setDeviceConfigurationPreviewPercentSize(1.0, 1.0);
+      setDeviceConfigurationPreviewSize(0, 0);
     }
 
     /**
@@ -251,7 +260,7 @@ public class CameraDeviceController extends JavaCameraView implements PictureCal
             Log.d(TAG, "supported resolution: " + r.width + "x" + r.height + " ratio: " + pictureRatio + " ratioToFitTo: " + ratioToFitTo);
             int resolutionPixels = r.width * r.height;
             double ratioDifference = Math.abs(ratioToFitTo - pictureRatio);
-            if (resolutionPixels > ratioMaxPixels && ratioDifference < bestRatioDifference) {
+            if (resolutionPixels > ratioMaxPixels && ratioDifference <= bestRatioDifference) {
                 ratioMaxPixels = resolutionPixels;
                 ratioCurrentMaxRes = r;
                 bestRatioDifference = ratioDifference;
@@ -337,6 +346,7 @@ public class CameraDeviceController extends JavaCameraView implements PictureCal
       float displayRatio = (float) displayHeight / displayWidth;
 
       Camera.Size pSize = getOptimalResolution(displayRatio, getResolutionList());
+      setDeviceConfigurationPreviewSize(pSize.height, pSize.width);
       param.setPreviewSize(pSize.width, pSize.height);
       param.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
       float previewRatio = (float) pSize.width / pSize.height;

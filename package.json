@@ -1,6 +1,6 @@
 {
   "name": "react-native-rectangle-scanner",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "Scan documents, automatic border detection, automatic crop, image filters",
   "main": "index.js",
   "files": [
@@ -31,14 +31,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/HarvestProfit/react-native-rectangle-scanner"
+    "url": "https://github.com/dFelinger/react-native-rectangle-scanner"
   },
   "author": "Jake Humphrey (https://github.com/humphreyja)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HarvestProfit/react-native-rectangle-scanner/issues"
+    "url": "https://github.com/dFelinger/react-native-rectangle-scanner/issues"
   },
-  "homepage": "https://github.com/HarvestProfit/react-native-rectangle-scanner#readme",
+  "homepage": "https://github.com/dFelinger/react-native-rectangle-scanner#readme",
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
