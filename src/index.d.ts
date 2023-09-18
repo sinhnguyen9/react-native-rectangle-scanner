@@ -64,7 +64,7 @@ declare module 'react-native-rectangle-scanner' {
 
   export interface RectangleOverlayComponentProps extends ViewProps {
     detectedRectangle?: DetectedRectangle,
-    previewRatio?: { height: number, width: number },
+    previewSize?: { height: any, width: any },
     backgroundColor?: string,
     borderColor?: string,
     borderWidth?: number,
